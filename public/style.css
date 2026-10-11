@@ -1,0 +1,81 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center;
+  font-family: "Poppins", sans-serif; color: #fff; padding: 16px; overflow-x: hidden;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+}
+
+/* floating glowing blobs */
+.blob { position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.55; z-index: 0;
+        animation: float 12s ease-in-out infinite; }
+.b1 { width: 320px; height: 320px; background: #ff3cac; top: -80px; left: -80px; }
+.b2 { width: 380px; height: 380px; background: #2b86c5; bottom: -100px; right: -100px; animation-delay: -4s; }
+.b3 { width: 260px; height: 260px; background: #784ba0; top: 40%; left: 55%; animation-delay: -8s; }
+@keyframes float { 50% { transform: translate(40px, -50px) scale(1.15); } }
+
+/* glass card */
+.card {
+  position: relative; z-index: 1; width: 100%; max-width: 420px; text-align: center;
+  padding: 28px 22px; border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+h1 { font-family: "Orbitron", sans-serif; font-size: 30px; margin: 0; letter-spacing: 3px; }
+h1 span { background: linear-gradient(90deg, #ff3cac, #00d2ff); -webkit-background-clip: text;
+          background-clip: text; color: transparent; }
+.sub { opacity: 0.75; font-size: 14px; margin: 6px 0 18px; }
+
+.stats { display: flex; gap: 12px; margin-bottom: 14px; }
+.stats div { flex: 1; background: rgba(0, 0, 0, 0.25); border-radius: 14px; padding: 10px; }
+.stats small { display: block; opacity: 0.6; font-size: 11px; letter-spacing: 2px; }
+.stats strong { font-family: "Orbitron", sans-serif; font-size: 22px; color: #00d2ff; }
+
+.meter { height: 8px; background: rgba(255, 255, 255, 0.12); border-radius: 8px; margin-bottom: 18px; overflow: hidden; }
+#meterFill { height: 100%; width: 0%; border-radius: 8px; transition: width 0.4s;
+             background: linear-gradient(90deg, #00d2ff, #ff3cac); }
+
+.row { display: flex; gap: 10px; margin-bottom: 12px; }
+input {
+  flex: 1; min-width: 0; padding: 14px; font-size: 20px; text-align: center; color: #fff;
+  background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px; outline: none; transition: 0.2s; font-family: inherit;
+}
+input:focus { border-color: #00d2ff; box-shadow: 0 0 18px rgba(0, 210, 255, 0.5); }
+input::placeholder { color: rgba(255, 255, 255, 0.4); }
+
+button {
+  padding: 14px 20px; font-size: 16px; font-weight: 600; border: none; border-radius: 14px;
+  cursor: pointer; color: #fff; font-family: "Orbitron", sans-serif; transition: transform 0.15s, box-shadow 0.2s;
+}
+button:hover { transform: translateY(-2px); }
+button:active { transform: scale(0.96); }
+.primary { background: linear-gradient(135deg, #ff3cac, #784ba0); box-shadow: 0 6px 20px rgba(255, 60, 172, 0.45); }
+.gold { background: linear-gradient(135deg, #f7971e, #ffd200); color: #222; box-shadow: 0 6px 20px rgba(255, 210, 0, 0.4); }
+.ghost { background: transparent; border: 1px solid rgba(255, 255, 255, 0.3); font-size: 13px; padding: 8px 16px; margin: 4px 0 8px; }
+
+.message { min-height: 28px; font-size: 18px; font-weight: 600; margin: 6px 0 14px; }
+.message.low { color: #00d2ff; }
+.message.high { color: #ff6b9d; }
+.message.win { color: #ffd200; text-shadow: 0 0 14px rgba(255, 210, 0, 0.7); }
+.shake { animation: shake 0.35s; }
+@keyframes shake { 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+
+h2 { font-family: "Orbitron", sans-serif; font-size: 18px; margin: 14px 0 10px; }
+ol { list-style: none; padding: 0; margin: 0; text-align: left; }
+ol li {
+  display: flex; justify-content: space-between; align-items: center; padding: 10px 14px;
+  margin-bottom: 8px; border-radius: 12px; background: rgba(0, 0, 0, 0.25);
+}
+ol li:nth-child(1) { background: linear-gradient(90deg, rgba(255, 210, 0, 0.3), rgba(0, 0, 0, 0.25)); }
+ol li:nth-child(2) { background: linear-gradient(90deg, rgba(200, 200, 220, 0.25), rgba(0, 0, 0, 0.25)); }
+ol li:nth-child(3) { background: linear-gradient(90deg, rgba(205, 127, 50, 0.3), rgba(0, 0, 0, 0.25)); }
+.empty { text-align: center; opacity: 0.6; display: block; }
+
+.hidden { display: none; }
+
+/* confetti */
+.confetti { position: fixed; top: -20px; width: 10px; height: 14px; z-index: 5; pointer-events: none;
+            animation: fall linear forwards; }
+@keyframes fall { to { transform: translateY(110vh) rotate(720deg); } }
